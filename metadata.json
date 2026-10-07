@@ -1,0 +1,6 @@
+{
+  "name": "MoneyTracker Pro (minnie32)",
+  "description": "เว็บแอปจัดการรายรับรายจ่าย พร้อมสรุปผลรายเดือน กราฟวิเคราะห์ข้อมูล และเชื่อมต่อ Firebase",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}

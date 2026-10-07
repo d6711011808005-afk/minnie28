@@ -1,0 +1,99 @@
+{
+  "entities": {
+    "Transaction": {
+      "title": "Transaction",
+      "description": "Represents an income or expense record created by a user.",
+      "type": "object",
+      "properties": {
+        "userId": {
+          "type": "string",
+          "description": "The UID of the user who owns this transaction.",
+          "maxLength": 128
+        },
+        "type": {
+          "type": "string",
+          "description": "Transaction type: either income or expense.",
+          "enum": ["income", "expense"]
+        },
+        "amount": {
+          "type": "number",
+          "description": "The monetary amount in Thai Baht."
+        },
+        "category": {
+          "type": "string",
+          "description": "Category name for classification.",
+          "maxLength": 64
+        },
+        "date": {
+          "type": "string",
+          "description": "Date of transaction in YYYY-MM-DD format.",
+          "maxLength": 32
+        },
+        "note": {
+          "type": "string",
+          "description": "Optional note or remark.",
+          "maxLength": 500
+        },
+        "paymentMethod": {
+          "type": "string",
+          "description": "Payment method such as cash, transfer, credit_card.",
+          "maxLength": 64
+        },
+        "createdAt": {
+          "type": "string",
+          "description": "Creation timestamp."
+        },
+        "updatedAt": {
+          "type": "string",
+          "description": "Last update timestamp."
+        }
+      },
+      "required": ["userId", "type", "amount", "category", "date"]
+    },
+    "UserProfile": {
+      "title": "UserProfile",
+      "description": "User preferences including monthly budget target.",
+      "type": "object",
+      "properties": {
+        "userId": {
+          "type": "string",
+          "description": "User UID.",
+          "maxLength": 128
+        },
+        "email": {
+          "type": "string",
+          "description": "User email.",
+          "maxLength": 256
+        },
+        "displayName": {
+          "type": "string",
+          "description": "User display name.",
+          "maxLength": 128
+        },
+        "monthlyBudget": {
+          "type": "number",
+          "description": "Target monthly budget in Baht."
+        },
+        "updatedAt": {
+          "type": "string",
+          "description": "Timestamp of profile update."
+        }
+      },
+      "required": ["userId"]
+    }
+  },
+  "firestore": {
+    "/users/{userId}/transactions/{transactionId}": {
+      "schema": {
+        "$ref": "#/entities/Transaction"
+      },
+      "description": "User specific income and expense records."
+    },
+    "/users/{userId}/profile/settings": {
+      "schema": {
+        "$ref": "#/entities/UserProfile"
+      },
+      "description": "User specific profile and monthly budget settings."
+    }
+  }
+}
